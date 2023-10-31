@@ -1,4 +1,6 @@
-Host gitlab.idesa.com.py
-    Hostname 192.168.24.200
-    StrictHostKeyChecking no
+Host github.com
+        User git
+        Hostname github.com
+        PreferredAuthentications publickey
+        IdentityFile /home/user/.ssh/id_rsa
 
