@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  app:
+    build: ./docker
+    ports:
+      - 8088:80
+    volumes:
+      - ./output/:/var/www
+      - ~/.ssh:/tmp/.ssh
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      SSH_AUTH_SOCK: /ssh-agent
+      PHP_IDE_CONFIG: serverName=docker
+      USER: ${USER:-deploy}
+      SSH_USER: ${USER:-deploy}
+    networks:
+     - sia_net
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 8085:8025
+    networks:
+     - sia_net
+  
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - 5432:5432
+    networks:
+      - sia_net
+
+networks:
+  sia_net:
+    driver: bridge
