@@ -36,11 +36,8 @@ COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 # ssh stuff
 RUN useradd -m deploy
-RUN mkdir -p /home/deploy/.ssh
-COPY config /home/deploy/.ssh/config
-RUN chown -R deploy:deploy /home/deploy \
- && chown -R deploy:deploy /home/deploy/.ssh \
- && chmod u+rwx,go-rwx /home/deploy/.ssh
+
+
 
 # driver installation
 COPY odbc.ini /etc/odbc.ini
@@ -63,11 +60,7 @@ RUN apt-get purge -y g++ \
     && rm -r /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
-# entrypoint stuff
-COPY ./docker-entrypoint.sh /bin/docker-entrypoint.sh
-RUN chmod +x /bin/docker-entrypoint.sh
-RUN chmod 777 /bin/docker-entrypoint.sh
-ENTRYPOINT ["/bin/docker-entrypoint.sh"]
+
 
 WORKDIR /var/www
 
