@@ -1,3 +1,2 @@
 # phprunner-postgrest
-Aqui contara con imagen docker que le ayudar a implementar un proyecto realizado con phprunner generar una base datos postgres por si lo requiera
-Solo debe importar su carpeta output 
+Aquí encontrarás una imagen Docker que te ayudará a implementar un proyecto desarrollado con PHPRunner. Esta imagen permite generar una base de datos PostgreSQL si es necesario. Solo necesitas importar tu carpeta  output 
